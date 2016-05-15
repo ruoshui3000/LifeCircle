@@ -17,12 +17,12 @@
 
 <ul class="clearfix categorygrid">
 <% for (i=0, l=categorys.length; i<l; i++) { %>
-<a href="<%=categorys[i].category_src%>">
-	<li id="categorygrid<%=i%>">
+<li id="categorygrid<%=i%>">
+	<a href="<%=categorys[i].category_src%>">
 		<img src="<%=categorys[i].category_img%>">
 		<p><%=categorys[i].category_title%></p>
-	</li>
-</a>
+	</a>
+</li>
 <% } %>
 </ul>
 </script>

@@ -70,11 +70,11 @@ $(document).ready(function(){
 	winHeight = winHeight-41;
 	winHeight = winHeight+"px";
 	ifmh();
-	$('.head td a:first').addClass('current');
+	$('.head td a:first').parent().addClass('current');
 	var hdw = $('.head td a');
 	hdw.click(function(){
-			hdw.removeClass('current');
-			$(this).addClass('current');
+			hdw.parent().removeClass('current');
+			$(this).parent().addClass('current');
 	});
 	
 	var td = $('table tr td a');
