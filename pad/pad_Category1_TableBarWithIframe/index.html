@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="tablebarwithiframe.css" rel="stylesheet" />
+<script>
+var num = -1;
+var currentid='a0';
+$(document).ready(function(){
+	if(window.innerHeight) 
+	winHeight = window.innerHeight; 
+	else if ((document.body) && (document.body.clientHeight)) 
+	winHeight = document.body.clientHeight; 
+	winHeight = winHeight-41;
+	winHeight = winHeight+"px";
+	ifmh();
+	$('.head td a:first').parent().addClass('current');
+	var hdw = $('.head td a');
+	hdw.click(function(){
+			hdw.parent().removeClass('current');
+			$(this).parent().addClass('current');
+	});
+	
+	var td = $('table tr td a');
+	td.click(function(){
+		var new1 = $(this).attr("id");
+		if(new1!=currentid){
+			num--;
+		}
+	});
+
+});
+function ifmh(){
+	$("iframe").css("height",winHeight);
+}
+function scroll(){
+	$("body").scrollTop(0);
+	$("#iframe").scrollTop(0);
+}
+
+function goBack(){
+	history.go(num);
+}
+
+</script>
+</head>
+<!-- 二级页面包含分类） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+<div class="head">
+	<table>
+		<tr>
+			<% for (i=0, l=categorys.length; i<l; i++) { %>
+				<% if (i==0) {%>
+						<td><a id='a<%=i%>' class="" target="ifrm" href="<%=categorys[i].category_src%>"><%=categorys[i].category_name%></a></td>
+					<% } else { %>
+						<td><a target="ifrm" href="<%=categorys[i].category_src%>"><%=categorys[i].category_name%></a></td>
+					<% }%>
+			<% } %>
+		</tr>
+	</table>
+</div>
+<iframe name="ifrm" id="iframe" src="<%=categorys[0].category_src%>">
+</iframe>
+</body>
+</html>
